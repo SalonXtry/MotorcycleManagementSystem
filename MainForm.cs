@@ -21,6 +21,7 @@ public class MainForm : Form
         var customersButton = new Button { Text = "Customers", Width = 180, Height = 45, Left = 195, Top = 130 };
         customersButton.Click += OpenCustomers;
         var motorcyclesButton = new Button { Text = "Motorcycles", Width = 180, Height = 45, Left = 195, Top = 195 };
+        motorcyclesButton.Click += OpenMotorcycles;
         var servicesButton = new Button { Text = "Service Records", Width = 180, Height = 45, Left = 195, Top = 260 };
 
         Controls.Add(title);
@@ -33,5 +34,10 @@ public class MainForm : Form
 {
     CustomerForm customerForm = new CustomerForm();
     customerForm.ShowDialog();
+}
+private void OpenMotorcycles(object? sender, EventArgs e)
+{
+    MotorcycleForm motorcycleForm = new MotorcycleForm();
+    motorcycleForm.ShowDialog();
 }
 }
