@@ -13,10 +13,11 @@ namespace MotorcycleManagementSystem
         private TextBox txtEmail;
 
         private ListBox lstCustomers;
-        private List<Customer> customers = new List<Customer>();
+        private List<Customer> customers;
 
         public CustomerForm()
         {
+            customers = DataManager.LoadCustomers();
             Text = "Customer Management";
             Size = new Size(600, 500);
             StartPosition = FormStartPosition.CenterScreen;
@@ -68,6 +69,14 @@ namespace MotorcycleManagementSystem
             lstCustomers = new ListBox();
             lstCustomers.Location = new Point(60, 330);
             lstCustomers.Size = new Size(470, 100);
+            foreach (Customer customer in customers)
+{
+    lstCustomers.Items.Add(
+        customer.CustomerId + " - " +
+        customer.Name + " - " +
+        customer.Phone
+    );
+}
 
             Controls.Add(title);
             Controls.Add(lblId);
@@ -105,6 +114,7 @@ namespace MotorcycleManagementSystem
             };
 
             customers.Add(customer);
+            DataManager.SaveCustomers(customers);
 
             lstCustomers.Items.Add(
                 customer.CustomerId + " - " +
