@@ -65,6 +65,11 @@ namespace MotorcycleManagementSystem
             btnAdd.Location = new Point(180, 270);
             btnAdd.Width = 150;
             btnAdd.Click += AddCustomer;
+            Button btnSearch = new Button();
+            btnSearch.Text = "Search Customer";
+            btnSearch.Location = new Point(340, 270);
+            btnSearch.Width = 150;
+            btnSearch.Click += SearchCustomer;
 
             lstCustomers = new ListBox();
             lstCustomers.Location = new Point(60, 330);
@@ -89,6 +94,7 @@ namespace MotorcycleManagementSystem
             Controls.Add(txtEmail);
             Controls.Add(btnAdd);
             Controls.Add(lstCustomers);
+            Controls.Add(btnSearch);
         }
 
         private void AddCustomer(object? sender, EventArgs e)
@@ -127,5 +133,32 @@ namespace MotorcycleManagementSystem
             txtPhone.Clear();
             txtEmail.Clear();
         }
+        private void SearchCustomer(object? sender, EventArgs e)
+{
+    string searchName = txtName.Text.ToLower();
+
+    if (searchName == "")
+    {
+        MessageBox.Show("Please enter a customer name to search.");
+        return;
+    }
+
+    foreach (Customer customer in customers)
+    {
+        if (customer.Name.ToLower().Contains(searchName))
+        {
+            MessageBox.Show(
+                "Customer ID: " + customer.CustomerId +
+                "\nName: " + customer.Name +
+                "\nPhone: " + customer.Phone +
+                "\nEmail: " + customer.Email
+            );
+
+            return;
+        }
+    }
+
+    MessageBox.Show("Customer not found.");
+}
     }
 }
