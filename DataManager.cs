@@ -8,6 +8,7 @@ namespace MotorcycleManagementSystem
     {
         private static string customerFile = "customers.json";
         private static string motorcycleFile = "motorcycles.json";
+        private static string serviceFile = "services.json";
 
         public static void SaveCustomers(List<Customer> customers)
         {
@@ -46,5 +47,23 @@ namespace MotorcycleManagementSystem
             return JsonSerializer.Deserialize<List<Motorcycle>>(json)
                    ?? new List<Motorcycle>();
         }
+        public static void SaveServices(List<ServiceRecord> services)
+{
+    string json = JsonSerializer.Serialize(services);
+    File.WriteAllText(serviceFile, json);
+}
+
+public static List<ServiceRecord> LoadServices()
+{
+    if (!File.Exists(serviceFile))
+    {
+        return new List<ServiceRecord>();
+    }
+
+    string json = File.ReadAllText(serviceFile);
+
+    return JsonSerializer.Deserialize<List<ServiceRecord>>(json)
+           ?? new List<ServiceRecord>();
+}
     }
 }

@@ -17,10 +17,11 @@ namespace MotorcycleManagementSystem
         private TextBox txtNotes;
 
         private ListBox lstServices;
-        private List<ServiceRecord> services = new List<ServiceRecord>();
+        private List<ServiceRecord> services;
 
         public ServiceRecordForm()
         {
+            services = DataManager.LoadServices();
             Text = "Service Records";
             Size = new Size(650, 680);
             StartPosition = FormStartPosition.CenterScreen;
@@ -97,6 +98,14 @@ namespace MotorcycleManagementSystem
             lstServices = new ListBox();
             lstServices.Location = new Point(60, 440);
             lstServices.Size = new Size(520, 140);
+            foreach (ServiceRecord service in services)
+{
+    lstServices.Items.Add(
+        service.ServiceId + " - " +
+        service.ServiceType + " - $" +
+        service.Cost
+    );
+}
 
             Controls.Add(title);
             Controls.Add(lblServiceId);
@@ -157,6 +166,7 @@ namespace MotorcycleManagementSystem
             };
 
             services.Add(service);
+            DataManager.SaveServices(services);
 
             lstServices.Items.Add(
                 service.ServiceId + " - " +
