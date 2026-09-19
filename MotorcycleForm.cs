@@ -33,6 +33,7 @@ namespace MotorcycleManagementSystem
             Label lblId = new Label();
             lblId.Text = "Motorcycle ID:";
             lblId.Location = new Point(60, 90);
+            lblId.AutoSize = true;
 
             txtId = new TextBox();
             txtId.Location = new Point(200, 90);
@@ -81,6 +82,7 @@ namespace MotorcycleManagementSystem
             Label lblCustomerId = new Label();
             lblCustomerId.Text = "Customer ID:";
             lblCustomerId.Location = new Point(60, 330);
+            
 
             txtCustomerId = new TextBox();
             txtCustomerId.Location = new Point(200, 330);
