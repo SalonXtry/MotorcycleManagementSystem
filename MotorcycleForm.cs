@@ -16,10 +16,11 @@ namespace MotorcycleManagementSystem
         private TextBox txtCustomerId;
 
         private ListBox lstMotorcycles;
-        private List<Motorcycle> motorcycles = new List<Motorcycle>();
+        private List<Motorcycle> motorcycles;
 
         public MotorcycleForm()
         {
+            motorcycles = DataManager.LoadMotorcycles();
             Text = "Motorcycle Management";
             Size = new Size(650, 650);
             StartPosition = FormStartPosition.CenterScreen;
@@ -97,6 +98,15 @@ namespace MotorcycleManagementSystem
             lstMotorcycles = new ListBox();
             lstMotorcycles.Location = new Point(60, 440);
             lstMotorcycles.Size = new Size(520, 120);
+            foreach (Motorcycle motorcycle in motorcycles)
+{
+    lstMotorcycles.Items.Add(
+        motorcycle.MotorcycleId + " - " +
+        motorcycle.RegistrationNumber + " - " +
+        motorcycle.Make + " " +
+        motorcycle.Model
+    );
+}
 
             Controls.Add(title);
             Controls.Add(lblId);
@@ -146,6 +156,7 @@ namespace MotorcycleManagementSystem
             };
 
             motorcycles.Add(motorcycle);
+            DataManager.SaveMotorcycles(motorcycles);
 
             lstMotorcycles.Items.Add(
                 motorcycle.MotorcycleId + " - " +
