@@ -8,6 +8,13 @@ public class MainForm : Form
         Width = 600;
         Height = 420;
         StartPosition = FormStartPosition.CenterScreen;
+         MessageBox.Show(
+        "Welcome to Motorcycle Management System!",
+        "Welcome",
+        MessageBoxButtons.OK,
+        MessageBoxIcon.Information
+    );
+
 
         var title = new Label
         {
